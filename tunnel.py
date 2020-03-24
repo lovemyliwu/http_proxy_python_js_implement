@@ -51,12 +51,6 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         print(f'{self.command} {self.path}')
 
-        if self.request not in tunnel_map:
-            self.handle_new_client()
-        else:
-            self.data_ready(self.request, self.client_address)
-
-    def handle_new_client(self):
         if self.command != 'CONNECT':
             raise Exception(f'tunnel not ready, shutdown connection')
 
